@@ -12,6 +12,17 @@ import 'package:path_provider/path_provider.dart';
 
 void main() => runApp(MyApp());
 
+class SomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Test')),
+      body: Container(),
+    );
+  }
+}
+
+
 class MyApp extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
@@ -27,7 +38,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     _alice = Alice(
-        showNotification: true, showInspectorOnShake: true, darkTheme: false);
+        showNotification: true, showInspectorOnShake: true, darkTheme: false, extraScreenRoute: );
     _dio = Dio(BaseOptions(followRedirects: false));
     _dio.interceptors.add(_alice.getDioInterceptor());
     _httpClient = HttpClient();
@@ -38,6 +49,7 @@ class _MyAppState extends State<MyApp> {
 
     super.initState();
   }
+
 
   @override
   Widget build(BuildContext context) {

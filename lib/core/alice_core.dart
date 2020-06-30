@@ -27,9 +27,10 @@ class AliceCore {
   String _notificationMessage;
   String _notificationMessageShown;
   bool _notificationProcessing = false;
+  final Route<dynamic> extraScreenRoute;
 
   AliceCore(this._navigatorKey, this.showNotification,
-      this.showInspectorOnShake, this.darkTheme, this.notificationIcon)
+      this.showInspectorOnShake, this.darkTheme, this.notificationIcon, this.extraScreenRoute)
       : assert(showNotification != null, "showNotification can't be null"),
         assert(
             showInspectorOnShake != null, "showInspectorOnShake can't be null"),

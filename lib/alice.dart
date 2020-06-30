@@ -16,6 +16,7 @@ class Alice {
   final bool showInspectorOnShake;
   final bool darkTheme;
   final String notificationIcon;
+  final Route<dynamic> extraScreenRoute;
   GlobalKey<NavigatorState> _navigatorKey;
   AliceCore _aliceCore;
   AliceHttpClientAdapter _httpClientAdapter;
@@ -26,15 +27,15 @@ class Alice {
       this.showNotification = true,
       this.showInspectorOnShake = false,
       this.darkTheme = false,
-      this.notificationIcon = "@mipmap/ic_launcher"})
+      this.notificationIcon = "@mipmap/ic_launcher",
+      this.extraScreenRoute})
       : assert(showNotification != null, "showNotification can't be null"),
-        assert(
-            showInspectorOnShake != null, "showInspectorOnShake can't be null"),
+        assert(showInspectorOnShake != null, "showInspectorOnShake can't be null"),
         assert(darkTheme != null, "darkTheme can't be null"),
         assert(notificationIcon != null, "notificationIcon can't be null") {
     _navigatorKey = navigatorKey ?? GlobalKey<NavigatorState>();
-    _aliceCore = AliceCore(_navigatorKey, showNotification,
-        showInspectorOnShake, darkTheme, notificationIcon);
+    _aliceCore =
+        AliceCore(_navigatorKey, showNotification, showInspectorOnShake, darkTheme, notificationIcon, extraScreenRoute);
     _httpClientAdapter = AliceHttpClientAdapter(_aliceCore);
     _httpAdapter = AliceHttpAdapter(_aliceCore);
   }
@@ -57,9 +58,7 @@ class Alice {
     _httpClientAdapter.onRequest(request, body: body);
   }
 
-  void onHttpClientResponse(
-      HttpClientResponse response, HttpClientRequest request,
-      {dynamic body}) {
+  void onHttpClientResponse(HttpClientResponse response, HttpClientRequest request, {dynamic body}) {
     assert(response != null, "httpClientResponse can't be null");
     assert(request != null, "httpClientRequest can't be null");
     _httpClientAdapter.onResponse(response, request, body: body);

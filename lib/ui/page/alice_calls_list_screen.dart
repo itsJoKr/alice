@@ -21,8 +21,7 @@ class AliceCallsListScreen extends StatefulWidget {
 class _AliceCallsListScreenState extends State<AliceCallsListScreen> {
   AliceCore get aliceCore => widget._aliceCore;
   bool _searchEnabled = false;
-  final TextEditingController _queryTextEditingController =
-      TextEditingController();
+  final TextEditingController _queryTextEditingController = TextEditingController();
   List<AliceMenuItem> _menuItems = List();
 
   _AliceCallsListScreenState() {
@@ -34,13 +33,12 @@ class _AliceCallsListScreenState extends State<AliceCallsListScreen> {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(
-          brightness: widget._aliceCore.brightness,
-          accentColor: AliceConstants.lightRed),
+      data: ThemeData(brightness: widget._aliceCore.brightness, accentColor: AliceConstants.lightRed),
       child: Scaffold(
         appBar: AppBar(
           title: _searchEnabled ? _buildSearchField() : _buildTitleWidget(),
           actions: [
+            _buildSearchButton(),
             _buildSearchButton(),
             _buildMenuButton(),
           ],
@@ -54,6 +52,15 @@ class _AliceCallsListScreenState extends State<AliceCallsListScreen> {
   void dispose() {
     super.dispose();
     _queryTextEditingController.dispose();
+  }
+
+  Widget _buildExtraScreenButton() {
+    return IconButton(
+      icon: Icon(Icons.leak_add),
+      onPressed: () {
+        Navigator.push(context, widget._aliceCore.extraScreenRoute);
+      },
+    );
   }
 
   Widget _buildSearchButton() {
@@ -132,10 +139,7 @@ class _AliceCallsListScreenState extends State<AliceCallsListScreen> {
         List<AliceHttpCall> calls = snapshot.data ?? List();
         String query = _queryTextEditingController.text.trim();
         if (query.isNotEmpty) {
-          calls = calls
-              .where((call) =>
-                  call.endpoint.toLowerCase().contains(query.toLowerCase()))
-              .toList();
+          calls = calls.where((call) => call.endpoint.toLowerCase().contains(query.toLowerCase())).toList();
         }
         if (calls.isNotEmpty) {
           return _buildCallsListWidget(calls);
