@@ -39,7 +39,7 @@ class _AliceCallsListScreenState extends State<AliceCallsListScreen> {
           title: _searchEnabled ? _buildSearchField() : _buildTitleWidget(),
           actions: [
             _buildSearchButton(),
-            _buildSearchButton(),
+            _buildExtraScreenButton(),
             _buildMenuButton(),
           ],
         ),
