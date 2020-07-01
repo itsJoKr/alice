@@ -16,7 +16,7 @@ class Alice {
   final bool showInspectorOnShake;
   final bool darkTheme;
   final String notificationIcon;
-  final Route<dynamic> extraScreenRoute;
+  final Route<dynamic> Function() extraScreenRoute;
   GlobalKey<NavigatorState> _navigatorKey;
   AliceCore _aliceCore;
   AliceHttpClientAdapter _httpClientAdapter;

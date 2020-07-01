@@ -58,7 +58,7 @@ class _AliceCallsListScreenState extends State<AliceCallsListScreen> {
     return IconButton(
       icon: Icon(Icons.leak_add),
       onPressed: () {
-        Navigator.push(context, widget._aliceCore.extraScreenRoute);
+        Navigator.push(context, widget._aliceCore.extraScreenRoute());
       },
     );
   }

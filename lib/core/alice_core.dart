@@ -27,7 +27,7 @@ class AliceCore {
   String _notificationMessage;
   String _notificationMessageShown;
   bool _notificationProcessing = false;
-  final Route<dynamic> extraScreenRoute;
+  final Route<dynamic> Function() extraScreenRoute;
 
   AliceCore(this._navigatorKey, this.showNotification,
       this.showInspectorOnShake, this.darkTheme, this.notificationIcon, this.extraScreenRoute)
